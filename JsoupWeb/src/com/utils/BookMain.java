@@ -49,7 +49,14 @@ public class BookMain {
 					String[] split = attr.split("\\/");
 					//商品id为split[4]
 					//id
-					book.setId(split[4]);
+					if (split[4].contains("?")) {
+						//用来判断人文社科图书
+						String id = split[4].substring(0, split[4].indexOf("?"));
+						book.setId(id);
+					}
+					else {
+						book.setId(split[4]);
+					}
 					Elements name = element2.getElementsByClass("ch-tabwidget-asintitle");
 					//name
 					book.setName(name.text());
